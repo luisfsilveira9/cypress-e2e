@@ -20,5 +20,11 @@ jobs:
       - name: Instalar dependências
         run: npm install
 
+      - name: Instalar Cypress Cucumber Preprocessor
+        run: npm install --save-dev @badeball/cypress-cucumber-preprocessor @bahmutov/cypress-esbuild-preprocessor esbuild
+
+      - name: Exibir estrutura de arquivos para debugging
+        run: ls -R
+
       - name: Rodar testes do Cypress
         run: npx cypress run
