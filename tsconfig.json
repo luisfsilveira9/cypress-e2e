@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "types": ["cypress"],
+    "baseUrl": "./",
+    "paths": {
+      "@support/*": ["cypress/support/*"],
+      "@fixtures/*": ["cypress/fixtures/*"],
+      "@pages/*": ["cypress/pages/*"]
+    },
+    "resolveJsonModule": true
+  },
+  "include": ["cypress/**/*.ts"]
+}
