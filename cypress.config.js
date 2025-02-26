@@ -8,12 +8,12 @@ module.exports = defineConfig({
     baseUrl: "https://www.saucedemo.com/",
     specPattern: "**/*.feature",
     supportFile: "cypress/support/e2e.js",
-    stepDefinitions: "cypress/e2e/login",
+    stepDefinitions: "cypress/support/step_definitions",
     reporter: "mochawesome",
     reporterOptions: {
-      reportDir: "cypress/reports/html",
+      reportDir: "cypress/reports/json",
       overwrite: false,
-      html: true,
+      html: false,
       json: true
     },
     setupNodeEvents(on, config) {
