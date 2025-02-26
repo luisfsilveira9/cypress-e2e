@@ -4,7 +4,7 @@ const addCucumberPreprocessorPlugin = require("@badeball/cypress-cucumber-prepro
 const createEsbuildPlugin = require("@badeball/cypress-cucumber-preprocessor/esbuild").createEsbuildPlugin;
 
 module.exports = defineConfig({
-  projectId: "m5cek5",
+  projectId: 'm5cek5',
   e2e: {
     baseUrl: "https://www.saucedemo.com/",
     specPattern: "**/*.feature",
