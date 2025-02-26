@@ -8,7 +8,14 @@ module.exports = defineConfig({
     baseUrl: "https://www.saucedemo.com/",
     specPattern: "**/*.feature",
     supportFile: "cypress/support/e2e.js",
-    stepDefinitions: "cypress/support/step_definitions", // 🔥 Corrigindo o caminho das definições de passo
+    stepDefinitions: "cypress/e2e/login",
+    reporter: "mochawesome",
+    reporterOptions: {
+      reportDir: "cypress/reports/html",
+      overwrite: false,
+      html: true,
+      json: true
+    },
     setupNodeEvents(on, config) {
       require("cypress-mochawesome-reporter/plugin")(on);
       addCucumberPreprocessorPlugin(on, config);
