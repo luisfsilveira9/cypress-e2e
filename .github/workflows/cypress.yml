@@ -21,13 +21,13 @@ jobs:
         run: npm install
 
       - name: Rodar testes do Cypress
-        run: npx cypress run || true
+        run: npx cypress run || true  # 🔥 Impede que um teste com falha cancele o pipeline
 
       - name: Verificar arquivos de report
         run: ls -R cypress/reports/json || echo "Nenhum arquivo JSON gerado"
 
       - name: Gerar relatório mochawesome
-        if: always()
+        if: always()  # 🔥 Garante que roda mesmo se os testes falharem
         run: |
           if ls cypress/reports/json/*.json 1> /dev/null 2>&1; then
             npx mochawesome-merge cypress/reports/json/*.json > mochawesome.json

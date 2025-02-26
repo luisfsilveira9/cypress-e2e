@@ -11,7 +11,7 @@ module.exports = defineConfig({
     stepDefinitions: "cypress/support/step_definitions",
     reporter: "mochawesome",
     reporterOptions: {
-      reportDir: "cypress/reports/json",
+      reportDir: "cypress/reports/json", // 💡 Mudando para uma pasta fixa
       overwrite: false,
       html: false,
       json: true
