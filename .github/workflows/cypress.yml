@@ -20,8 +20,10 @@ jobs:
       - name: Instalar dependências
         run: npm install
 
-      - name: Rodar testes do Cypress
-        run: npx cypress run || true
+      - name: Rodar testes e enviar para Cypress Cloud
+        env:
+            CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+        run: npx cypress run --record
 
       - name: Verificar arquivos de report
         run: ls -R cypress/reports/json || echo "Nenhum arquivo JSON gerado"
