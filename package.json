@@ -19,6 +19,7 @@
   "homepage": "https://github.com/luisfsilveira9/cypress-e2e#readme",
   "devDependencies": {
     "@badeball/cypress-cucumber-preprocessor": "^22.0.1",
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.4",
     "cypress": "^14.1.0",
     "cypress-axe": "^1.6.0",
     "cypress-file-upload": "^5.0.8",

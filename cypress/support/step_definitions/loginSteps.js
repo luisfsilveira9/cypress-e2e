@@ -9,6 +9,11 @@ When("eu insiro o usuário {string} e a senha {string}", (username, password) =>
   cy.get('[data-test="password"]').type(password);
 });
 
+When("eu insiro um usuário inválido {string} e senha {string}", (invalidUsername, invalidPassword) => {
+  cy.get('[data-test="username"]').type(invalidUsername);
+  cy.get('[data-test="password"]').type(invalidPassword);
+});
+
 When("clico no botão de login", () => {
   cy.get('[data-test="login-button"]').click();
 });

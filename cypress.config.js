@@ -1,16 +1,22 @@
 const { defineConfig } = require("cypress");
-const createEsbuildPlugin = require("@badeball/cypress-cucumber-preprocessor/esbuild").createEsbuildPlugin;
+const createBundler = require("@bahmutov/cypress-esbuild-preprocessor");
 const addCucumberPreprocessorPlugin = require("@badeball/cypress-cucumber-preprocessor").addCucumberPreprocessorPlugin;
+const createEsbuildPlugin = require("@badeball/cypress-cucumber-preprocessor/esbuild").createEsbuildPlugin;
 
 module.exports = defineConfig({
   e2e: {
     baseUrl: "https://www.saucedemo.com/",
-    specPattern: "cypress/e2e/**/*.feature",
+    specPattern: "**/*.feature",
     supportFile: "cypress/support/e2e.js",
+    stepDefinitions: "cypress/support/step_definitions", // 🔥 Corrigindo o caminho das definições de passo
     setupNodeEvents(on, config) {
       require("cypress-mochawesome-reporter/plugin")(on);
-      require("@badeball/cypress-cucumber-preprocessor").addCucumberPreprocessorPlugin(on, config);
-      on("file:preprocessor", createEsbuildPlugin()); // Corrigido aqui
+      addCucumberPreprocessorPlugin(on, config);
+      
+      on("file:preprocessor", createBundler({
+        plugins: [createEsbuildPlugin(config)],
+      }));
+
       return config;
     },
   },

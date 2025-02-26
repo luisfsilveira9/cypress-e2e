@@ -4,8 +4,8 @@
       "password": "secret_sauce"
     },
     "invalidUser": {
-      "username": "usuario_invalido",
-      "password": "senha_errada"
+      "invalidUser": "usuario_invalido",
+      "invaliddPassword": "senha_errada"
     }
   }
   

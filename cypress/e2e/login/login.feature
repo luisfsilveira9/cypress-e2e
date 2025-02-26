@@ -8,7 +8,7 @@ Feature: Login no SauceDemo
 
   Scenario: Login falha com credenciais inválidas
     Given que estou na página de login
-    When eu insiro um usuário inválido "usuario_invalido" e senha "senha_errada"
+    When eu insiro um usuário inválido "error_user" e senha "senha_errada"
     And clico no botão de login
     Then devo ver uma mensagem de erro "Epic sadface: Username and password do not match any user in this service"
 
