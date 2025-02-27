@@ -47,7 +47,30 @@ jobs:
 
       - name: Upload dos relatórios como artefato
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3
         with:
           name: Relatorio-Mochawesome
           path: mochawesome-report
+
+  Deploy-netlify:
+            needs: cypress-run
+            runs-on: ubuntu-latest
+            steps:
+              - name: Checkout código
+                uses: actions/checkout@v3
+        
+              - name: Baixar relatório Mochawesome
+                uses: actions/download-artifact@v3
+                with:
+                  name: Relatorio-Mochawesome
+                  path: mochawesome-report
+        
+              - name: Instalar Netlify CLI
+                run: npm install -g netlify-cli
+        
+              - name: Publicar no Netlify
+                run: netlify deploy --prod --dir=mochawesome-report
+                env:
+                  NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+                  NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        
