@@ -30,25 +30,24 @@ jobs:
 
       - name: Rodar testes de forma paralela
         env:
-            CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
         run: npx cypress run --record --parallel
 
-      - name: Gerar e exibir relatório mochawesome
+      - name: Gerar relatório consolidado Mochawesome
         if: always()
         run: |
-          if [ -d "cypress/reports/json" ] && [ "$(ls -A cypress/reports/json/*.json 2>/dev/null)" ]; then
-            echo "Gerando o relatório Mochawesome..."
-            npx mochawesome-merge cypress/reports/json/*.json -o mochawesome.json
-            npx mochawesome-merge cypress/reports/json/*.html -o mochawesome.html
-            cat mochawesome.json
-            cat mochawesome.html
+          if [ -d "cypress/reports" ] && [ "$(ls -A cypress/reports/*.json 2>/dev/null)" ]; then
+            echo "Mesclando JSONs do Mochawesome..."
+            npx mochawesome-merge cypress/reports/*.json > mochawesome.json
+            echo "Gerando relatório HTML final..."
+            npx marge mochawesome.json -f mochawesome -o mochawesome-report
           else
-            echo "Nenhum JSON de relatório encontrado."
+            echo "Nenhum JSON encontrado para gerar o relatório"
           fi
 
-      - name: Upload do relatório mochawesome
+      - name: Upload dos relatórios como artefato
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: Relatorio-Mochawesome
-          path: mochawesome.json mochawesome.html
+          path: mochawesome-report

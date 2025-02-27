@@ -12,20 +12,19 @@ module.exports = defineConfig({
     stepDefinitions: "cypress/support/step_definitions",
     reporter: "cypress-mochawesome-reporter",
     reporterOptions: {
-      reportDir: "cypress/reports/json",
-      output: "cypress/reports/json",
+      reportDir: "cypress/reports",
       overwrite: true,
-      html: true,
+      html: true, 
       json: true,
       reportFilename: "mochawesome",
       saveJson: true,
-      saveHtml: true,
+      saveHtml: true
     },
 
     setupNodeEvents(on, config) {
       require("cypress-mochawesome-reporter/plugin")(on);
       addCucumberPreprocessorPlugin(on, config);
-      
+
       on("file:preprocessor", createBundler({
         plugins: [createEsbuildPlugin(config)],
       }));
