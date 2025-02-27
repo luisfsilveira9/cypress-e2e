@@ -45,4 +45,4 @@ jobs:
           fi
 
       - name: Exibir relatório gerado
-        run: cat mochawesome.json || echo "Nenhum relatório foi gerado"
+        run: cat mochawesome.json
