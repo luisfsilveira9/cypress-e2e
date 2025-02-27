@@ -33,13 +33,13 @@ jobs:
             CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
         run: npx cypress run --record --parallel
 
-      - name: Gerar relatório mochawesome
+      - name: Gerar e exibir relatório mochawesome
         if: always()
         run: |
           if [ -d "cypress/reports/json" ] && [ "$(ls -A cypress/reports/json/*.json 2>/dev/null)" ]; then
             echo "Gerando o relatório Mochawesome..."
             npx mochawesome-merge cypress/reports/json/*.json -o mochawesome.json
-            npx marge mochawesomeo.json -f mochawesome -o mochawesome-report
+            cat mochawesome.json
           else
             echo "Nenhum JSON de relatório encontrado."
           fi
@@ -49,4 +49,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: Relatorio-Mochawesome
-          path: mochawesome-report
+          path: mochawesome.json
