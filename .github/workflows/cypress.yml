@@ -31,7 +31,7 @@ jobs:
       - name: Gerar relatório mochawesome
         if: always()
         run: |
-          if ls cypress/reports/json/*.json 1> /dev/null 2>&1; then
+          if ls cypress/reports/json; then
             npx mochawesome-merge cypress/reports/json/*.json > mochawesome.json
           else
             echo "Nenhum JSON encontrado, ignorando merge" 
