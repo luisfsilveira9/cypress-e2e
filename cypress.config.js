@@ -13,13 +13,13 @@ module.exports = defineConfig({
     reporter: "cypress-mochawesome-reporter",
     reporterOptions: {
       reportDir: "cypress/reports/json",
-      output: "cypress/reports/json/mochawesome.json",
+      output: "cypress/reports/json",
       overwrite: true,
-      html: false,
+      html: true,
       json: true,
       reportFilename: "mochawesome",
       saveJson: true,
-      saveHtml: false,
+      saveHtml: true,
     },
 
     setupNodeEvents(on, config) {
