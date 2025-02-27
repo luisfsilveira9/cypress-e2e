@@ -67,6 +67,9 @@ jobs:
         
               - name: Instalar Netlify CLI
                 run: npm install -g netlify-cli
+
+              - name: Instalar Netlify Plugin Cypress
+                run: npm install --save-dev netlify-plugin-cypress
         
               - name: Publicar no Netlify
                 run: netlify deploy --prod --dir=mochawesome-report

@@ -24,6 +24,7 @@
     "cypress-axe": "^1.6.0",
     "cypress-file-upload": "^5.0.8",
     "cypress-mochawesome-reporter": "^3.8.2",
-    "esbuild": "^0.25.0"
+    "esbuild": "^0.25.0",
+    "netlify-plugin-cypress": "^2.2.1"
   }
 }
