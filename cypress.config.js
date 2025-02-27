@@ -13,12 +13,14 @@ module.exports = defineConfig({
     reporter: "cypress-mochawesome-reporter",
     reporterOptions: {
       reportDir: "cypress/reports/json",
-      reportFilename: "mochawesome.json",
       overwrite: true,
       html: false,
       json: true,
-      quiet: true
+      reportFilename: "mochawesome",
+      saveJson: true,
+      saveHtml: false,
     },
+
     setupNodeEvents(on, config) {
       require("cypress-mochawesome-reporter/plugin")(on);
       addCucumberPreprocessorPlugin(on, config);
