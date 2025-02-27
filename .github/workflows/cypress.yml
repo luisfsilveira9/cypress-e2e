@@ -26,15 +26,15 @@ jobs:
         run: npx cypress run --record
 
       - name: Verificar arquivos de report
-        run: ls -R cypress/reports/json || echo "Nenhum arquivo JSON gerado"
+        run: ls -R cypress/reports/json
 
       - name: Gerar relatório mochawesome
         if: always()
         run: |
-          if ls cypress/reports/json/*.jsons 1> /dev/null 2>&1; then
-            npx mochawesome-merge cypress/reports/json/*.jsons > mochawesome.json
+          if ls cypress/reports/json/*.json 1> /dev/null 2>&1; then
+            npx mochawesome-merge cypress/reports/json/*.json > mochawesome.json
           else
-            echo "Nenhum JSON encontrado, ignorando merge"
+            echo "Nenhum JSON encontrado, ignorando merge" 
           fi
 
       - name: Exibir relatório gerado
