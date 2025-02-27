@@ -38,11 +38,11 @@ jobs:
         if: always()
         run: |
           if [ -d "cypress/reports/json" ] && [ "$(ls -A cypress/reports/json/*.json 2>/dev/null)" ]; then
-            echo "📄 JSONs encontrados, gerando o relatório..."
+            echo "JSONs encontrados, gerando o relatório..."
             npx mochawesome-merge cypress/reports/json/*.json -o mochawesome.json
           else
-            echo "❌ Nenhum JSON encontrado, ignorando merge"
+            echo "Nenhum JSON encontrado, ignorando merge"
           fi
-          
+
       - name: Exibir relatório gerado
         run: cat mochawesome.json || echo "Nenhum relatório foi gerado"

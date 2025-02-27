@@ -10,7 +10,7 @@ module.exports = defineConfig({
     specPattern: "**/*.feature",
     supportFile: "cypress/support/e2e.js",
     stepDefinitions: "cypress/support/step_definitions",
-    reporter: "mochawesome",
+    reporter: "cypress-mochawesome-reporter",
     reporterOptions: {
       reportDir: "cypress/reports/json",
       reportFilename: "mochawesome",
