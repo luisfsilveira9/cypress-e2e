@@ -25,16 +25,23 @@ jobs:
             CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
         run: npx cypress run --record
 
-      - name: Verificar arquivos de report
-        run: ls -R cypress/reports/json
+      - name: Verificar arquivos de report antes do merge
+        run: |
+          if [ -d "cypress/reports/json" ]; then
+            echo "Diretório encontrado. Listando arquivos:"
+            ls -lah cypress/reports/json
+          else
+            echo "Diretório não encontrado!"
+          fi      
 
       - name: Gerar relatório mochawesome
         if: always()
         run: |
-          if ls cypress/reports/json; then
+          if [ -d "cypress/reports/json" ] && [ "$(ls -A cypress/reports/json/*.json 2>/dev/null)" ]; then
+            echo "JSONs encontrados, gerando o relatório..."
             npx mochawesome-merge cypress/reports/json/*.json > mochawesome.json
           else
-            echo "Nenhum JSON encontrado, ignorando merge" 
+            echo "Nenhum JSON encontrado, ignorando merge"
           fi
 
       - name: Exibir relatório gerado
