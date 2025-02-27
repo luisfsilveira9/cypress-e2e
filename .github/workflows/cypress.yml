@@ -39,7 +39,7 @@ jobs:
           if [ -d "cypress/reports/json" ] && [ "$(ls -A cypress/reports/json/*.json 2>/dev/null)" ]; then
             echo "Gerando o relatório Mochawesome..."
             npx mochawesome-merge cypress/reports/json/*.json -o mochawesome.json
-            npx marge mochawesome-report.json -f mochawesome -o mochawesome-report
+            npx marge mochawesomeo.json -f mochawesome -o mochawesome-report
           else
             echo "Nenhum JSON de relatório encontrado."
           fi
@@ -49,4 +49,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: Relatorio-Mochawesome
-          path: mochawesome.json
+          path: mochawesome-report
